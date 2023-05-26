@@ -4,16 +4,20 @@ type TItem = {
   orderId: number;
   bolNumber: number;
   jobNumber: number;
-  customer: string;
-  customerCity: string;
+  customer_one: string;
+  customer_two: string;
+  customer_three: string;
+  customer_city: string;
 };
 
 export const data: TItem[] = Array(100).fill({
   orderId: 1,
   bolNumber: 1,
   jobNumber: 1,
-  customer: 'CUSTOMER',
-  customerCity: 'CUSTOMER_CITY',
+  customer_one: 'CUSTOMER_ONE',
+  customer_two: 'CUSTOMER_TWO',
+  customer_three: 'CUSTOMER_THREE',
+  customer_city: 'CUSTOMER_CITY',
 });
 
 export const columns: ColumnsType<TItem> = [
@@ -21,30 +25,42 @@ export const columns: ColumnsType<TItem> = [
     title: 'ORDER ID',
     dataIndex: 'orderId',
     key: 'orderId',
-    width: 110,
+    width: 200,
   },
   {
     title: 'BOL NUMBER',
     dataIndex: 'bolNumber',
     key: 'bolNumber',
-    width: 150,
+    width: 200,
   },
   {
     title: 'JOB NUMBER',
     dataIndex: 'jobNumber',
     key: 'jobNumber',
-    width: 150,
+    width: 200,
   },
   {
-    title: 'CUSTOMER',
-    dataIndex: 'customer',
-    key: 'customer',
-    width: 150,
+    title: 'CUSTOMER_ONE',
+    dataIndex: 'customer_one',
+    key: 'customer_one',
+    width: 450,
+  },
+  {
+    title: 'CUSTOMER_TWO',
+    dataIndex: 'customer_two',
+    key: 'customer_two',
+    width: 450,
+  },
+  {
+    title: 'CUSTOMER_THREE',
+    dataIndex: 'customer_three',
+    key: 'customer_three',
+    width: 450,
   },
   {
     title: 'CUSTOMER CITY',
-    dataIndex: 'customerCity',
-    key: 'customerCity',
-    width: 150,
+    dataIndex: 'customer_city',
+    key: 'customer_city',
+    width: 200,
   },
 ];

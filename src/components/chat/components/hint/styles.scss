@@ -1,0 +1,45 @@
+.hint {
+  display: inline-block;
+  margin-bottom: 28px;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #BD71B6 0%, #6BB4A5 100%) border-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0px 4px 4px rgba(0, 32, 51, 0.04)) drop-shadow(0px 8px 24px rgba(0, 32, 51, 0.12));
+
+  &-inner {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #FFFCFC;
+    border-radius: 50px;
+
+    .ant-divider {
+      height: 26px;
+      margin: 0 24px;
+      background: rgba(0, 65, 102, .35);
+    }
+  }
+
+  &-left,
+  &-right {
+    display: flex;
+    align-items: center;
+
+    span {
+      display: inline-block;
+      margin-left: 14px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  &-left span {
+    color: #B853B0;
+  }
+
+  &-right span {
+    color: #6CB3A5;
+  }
+}

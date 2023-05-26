@@ -1,6 +1,9 @@
 body {
   font-family: 'Inter', sans-serif;
+}
 
+body,
+.chat-list {
   &::-webkit-scrollbar,
   &::-webkit-scrollbar {
     width: 8px;
@@ -19,5 +22,15 @@ body {
     height: 8px;
     background: rgba(0, 66, 105, 0.24);
     border-radius: 4px;
+  }
+}
+
+.app {
+  height: 100vh;
+
+  &-main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 82px);
   }
 }

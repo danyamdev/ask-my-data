@@ -1,18 +1,31 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Empty } from 'antd';
 
 import { ChatItem } from '../index';
 
+import { TAsk } from '../../../../api/types/ask';
+
 import './styles.scss';
 
-const ChatList: React.FC = () => {
+type TProps = {
+  answers: TAsk[];
+};
+
+const ChatList: React.FC<TProps> = ({ answers }) => {
   const chatRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    chatRef.current && chatRef.current.scrollTo(0, 99999);
+  }, [chatRef, answers]);
 
   return (
     <div ref={chatRef} className="chat-list">
       <div className="chat-list-inner">
-        {[1, 2, 3, 4].map(i => (
-          <ChatItem key={i} />
-        ))}
+        {answers.length > 0 ? (
+          answers.map((a, i) => <ChatItem key={i} index={i} ask={a} />)
+        ) : (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table as TableAnt } from 'antd';
 
-import { columns, data } from '../../constants';
+import { columns, data } from './constants';
 
 import './styles.scss';
 

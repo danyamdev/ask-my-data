@@ -1,20 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { ChatList, Hint, Input } from './components';
 
 import askAPI from '../../api/ask';
-import { TAsk, THint } from '../../api/types/ask';
+import { useChatSelector } from '../../store/chat/selectors';
+import { successChatAction } from '../../store/chat/actions';
 
 import './styles.scss';
 
 const Chat: React.FC = () => {
-  const [hint, setHint] = useState<THint>();
-  const [answers, setAnswers] = useState<TAsk[]>([]);
+  const dispatch = useDispatch();
+
+  const { chat } = useChatSelector();
 
   const onClick = useCallback(async (query: string) => {
     try {
-      const { data } = await askAPI.postAsk(query);
-      setAnswers(prevState => [...prevState, data]);
+      const { answer, hints } = await askAPI.postAsk(query);
+
+      dispatch(successChatAction({ answer, hints }));
     } catch (e) {
       window.console.log(e);
     }
@@ -23,8 +27,8 @@ const Chat: React.FC = () => {
   return (
     <div className="chat">
       <div className="chat-inner">
-        <ChatList answers={answers} />
-        <Hint />
+        <ChatList answers={chat.answers} />
+        <Hint hints={chat.hints} />
         <Input onClick={onClick} />
       </div>
     </div>

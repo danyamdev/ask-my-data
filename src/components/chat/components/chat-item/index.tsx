@@ -1,20 +1,16 @@
 import React from 'react';
 
-import { TAsk } from '../../../../api/types/ask';
-
 import './styles.scss';
 
 type TProps = {
-  ask: TAsk;
-  index: number;
+  answer: string;
 };
 
-const ChatItem: React.FC<TProps> = ({ index, ask }) => {
+const ChatItem: React.FC<TProps> = ({ answer }) => {
   return (
     <div className="chat-item">
       <div className="chat-item-inner">
-        {index} -
-        <span dangerouslySetInnerHTML={{ __html: ask as any }} />
+        <span dangerouslySetInnerHTML={{ __html: answer }} />
         {/*<div className="question">*/}
         {/*  <span>Which industry leads to the highest number of defaults?</span>*/}
         {/*  <span>Result | Code</span>*/}

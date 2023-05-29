@@ -23,6 +23,7 @@
   .logo {
     display: flex;
     align-items: center;
+    margin-right: 8px;
 
     span {
       display: inline-block;
@@ -32,6 +33,10 @@
       line-height: 16px;
       color: #525252;
     }
+  }
+
+  .upload-icon {
+    font-size: 18px;
   }
 
   .target-column {

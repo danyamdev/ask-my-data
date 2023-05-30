@@ -6,7 +6,8 @@ body {
 body,
 .app-main,
 .chat-list,
-.ant-table-body {
+.ant-table-body,
+.table-custom {
   &::-webkit-scrollbar,
   &::-webkit-scrollbar {
     width: 8px;

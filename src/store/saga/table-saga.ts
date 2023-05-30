@@ -10,10 +10,10 @@ function* fetchTableWorker() {
     yield put(loadingTableAction(true));
 
     const info: TFile = yield call(dataAPI.getTableAnalysis);
-    const data: TTablePage = yield call(dataAPI.getTablePage, { page: 1, rowsPerPage: 3 });
+    const data: TTablePage = yield call(dataAPI.getTablePage, 1);
 
     yield put(successTableAction({ ...info, ...data }));
-  } catch (e: any) {
+  } catch (e) {
     window.console.log(e);
     yield put(errorTableAction({ title: 'Ошибка', description: 'Обратитесь к администратору!' }));
   }

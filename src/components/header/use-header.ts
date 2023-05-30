@@ -1,11 +1,16 @@
 import { useCallback, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 import { message, UploadProps } from 'antd';
+import Cookies from 'js-cookie';
 
 import dataAPI from '../../api/data';
 import { API } from '../../constants';
 import { useTableSelector } from '../../store/table/selectors';
+import { fetchTableAction } from '../../store/table/actions';
 
 const useHeader = () => {
+  const dispatch = useDispatch();
+
   const { table } = useTableSelector();
 
   const options = useMemo(
@@ -26,7 +31,13 @@ const useHeader = () => {
       if (info.file.status !== 'uploading') {
         window.console.log(info.file, info.fileList);
       }
+
       if (info.file.status === 'done') {
+        const token = info.file.response.token;
+        Cookies.set('token', token);
+
+        dispatch(fetchTableAction());
+
         message.success(`${info.file.name} file uploaded successfully`);
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);

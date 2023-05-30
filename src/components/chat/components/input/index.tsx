@@ -5,7 +5,7 @@ import { ReactComponent as Plane } from '../../../../assets/images/plane.svg';
 
 import './styles.scss';
 
-const placeholder = 'Which industry leads to the highest number of defaults?';
+const placeholder = 'Ask the question?';
 
 type TProps = {
   onClick: (query: string) => Promise<void>;
@@ -19,7 +19,9 @@ const Input: React.FC<TProps> = ({ onClick }) => {
   };
 
   const handleClick = () => {
-    query.length > 0 && onClick(query);
+    if (query.length > 0) {
+      onClick(query).finally(() => setQuery(''));
+    }
   };
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 export type THint = {
-  query: string;
   goal: string;
+  hint: string;
 };
 
 export type TAsk = {

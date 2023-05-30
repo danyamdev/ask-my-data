@@ -13,27 +13,27 @@ type TProps = {
 };
 
 const Hint: React.FC<TProps> = ({ hints }) => (
-  <>
-    {hints.map(({ query, goal }, index) => (
+  <div className="hints">
+    {hints.map(({ goal, hint }, index) => (
       <div key={index}>
         <div className="hint">
           <div className="hint-inner">
             <div className="hint-left">
               <Star />
-              <span>{query}</span>
+              <span>{goal}</span>
             </div>
 
             <Divider type="vertical" />
 
             <div className="hint-right">
               <Darts />
-              <span>{goal}</span>
+              <span>{hint}</span>
             </div>
           </div>
         </div>
       </div>
     ))}
-  </>
+  </div>
 );
 
 export default Hint;

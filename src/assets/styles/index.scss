@@ -5,6 +5,7 @@ body {
 
 body,
 .app-main,
+.chat,
 .chat-list,
 .ant-table-body,
 .table-custom {
@@ -42,6 +43,5 @@ body,
     display: flex;
     flex-direction: column;
     height: calc(100vh - 82px);
-    overflow-y: auto;
   }
 }

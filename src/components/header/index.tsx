@@ -1,13 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Divider, Select } from 'antd';
-import type { UploadProps } from 'antd';
-import { Button, message, Upload } from 'antd';
+import { Button, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 import { Logo } from '../index';
 
-import { API } from '../../constants';
-import { useTableSelector } from '../../store/table/selectors';
+import useHeader from './use-header';
 
 import invalidImg from '../../assets/images/invalid.svg';
 import outliersImg from '../../assets/images/outliers.svg';
@@ -15,34 +13,7 @@ import missingImg from '../../assets/images/missing.svg';
 import './styles.scss';
 
 const Header: React.FC = () => {
-  const { table } = useTableSelector();
-
-  const options = useMemo(
-    () =>
-      table.headers?.map((h, i) => ({
-        value: i,
-        label: h,
-      })),
-    [table],
-  );
-
-  const logoName = useMemo(() => `${table.filename}${table.file_extension}`, [table]);
-
-  const props: UploadProps = {
-    name: 'file',
-    action: `${API}/uploadNewTable`,
-    onChange: async info => {
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
-      } else if (info.file.status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    showUploadList: false,
-  };
+  const { props, table, options, logoName, onChange } = useHeader();
 
   return (
     <div className="header">
@@ -56,7 +27,7 @@ const Header: React.FC = () => {
 
           <div className="target-column">
             <span>Target column:</span>
-            <Select defaultValue={table.target} options={options} />
+            <Select defaultValue={table.target} options={options} onChange={onChange} />
           </div>
         </div>
 

@@ -36,6 +36,16 @@ export const reducer = (state: TTableState = initialState, action: TTableAction)
         loading: false,
       };
 
+    case TableActionTypes.SET_TABLE_DATA_SUCCESS:
+      return {
+        ...state,
+        table: {
+          ...state.table,
+          ...action.payload,
+        },
+        loading: false,
+      };
+
     case TableActionTypes.SET_TABLE_ERROR:
       return {
         ...state,

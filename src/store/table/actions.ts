@@ -1,5 +1,6 @@
 import { TCustomError } from '../../types/common';
-import { TableActionTypes, TTableAction } from '../../types/table';
+import { TableActionTypes, TTable, TTableAction } from '../../types/table';
+import { TTablePage } from '../../api/types/data';
 
 export const fetchTableAction = (): TTableAction => ({
   type: TableActionTypes.FETCH_TABLE,
@@ -10,8 +11,13 @@ export const loadingTableAction = (payload: boolean): TTableAction => ({
   payload,
 });
 
-export const successTableAction = (payload: any): TTableAction => ({
+export const successTableAction = (payload: TTable): TTableAction => ({
   type: TableActionTypes.SET_TABLE_SUCCESS,
+  payload,
+});
+
+export const successTableDataAction = (payload: TTablePage): TTableAction => ({
+  type: TableActionTypes.SET_TABLE_DATA_SUCCESS,
   payload,
 });
 

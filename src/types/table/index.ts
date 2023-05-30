@@ -1,7 +1,7 @@
 import { TFile, TTablePage } from '../../api/types/data';
 import { TCustomError } from '../common';
 
-type TTable = TFile & TTablePage;
+export type TTable = TFile & TTablePage;
 
 export type TTableState = {
   table: TTable;
@@ -13,6 +13,7 @@ export enum TableActionTypes {
   FETCH_TABLE = 'FETCH_TABLE',
   SET_TABLE_LOADING = 'SET_TABLE_LOADING',
   SET_TABLE_SUCCESS = 'SET_TABLE_SUCCESS',
+  SET_TABLE_DATA_SUCCESS = 'SET_TABLE_DATA_SUCCESS',
   SET_TABLE_ERROR = 'SET_TABLE_ERROR',
 }
 
@@ -30,9 +31,19 @@ type TSetTableSuccessAction = {
   payload: TTable;
 };
 
+type TSetTableDataSuccessAction = {
+  type: TableActionTypes.SET_TABLE_DATA_SUCCESS;
+  payload: TTablePage;
+};
+
 type TSetTableErrorAction = {
   type: TableActionTypes.SET_TABLE_ERROR;
   payload: TCustomError;
 };
 
-export type TTableAction = TFetchTableAction | TSetTableLoadingAction | TSetTableSuccessAction | TSetTableErrorAction;
+export type TTableAction =
+  | TFetchTableAction
+  | TSetTableLoadingAction
+  | TSetTableSuccessAction
+  | TSetTableDataSuccessAction
+  | TSetTableErrorAction;

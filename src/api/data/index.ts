@@ -5,7 +5,7 @@ import { bffAxios } from '../index';
 import { TFile, TTablePage } from '../types/data';
 
 const dataAPI = {
-  postUploadNewTable: () => bffAxios.post<TFile>('/uploadNewTable'),
+  postUploadNewTable: () => bffAxios.post<{ token: string }>('/uploadNewTable'),
 
   getTableAnalysis: () => bffAxios.get<TFile>(`/getTableAnalysis?token=${Cookies.get('token')}`).then(res => res.data),
 

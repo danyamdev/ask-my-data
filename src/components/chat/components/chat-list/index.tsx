@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Empty } from 'antd';
 
 import { ChatItem } from '../index';
+
+import useChatList from './use-chat-list';
 
 import './styles.scss';
 
@@ -10,11 +12,7 @@ type TProps = {
 };
 
 const ChatList: React.FC<TProps> = ({ answers }) => {
-  const chatRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    chatRef.current && chatRef.current.scrollTo(0, 99999);
-  }, [chatRef, answers]);
+  const { chatRef } = useChatList(answers);
 
   return (
     <div ref={chatRef} className="chat-list">

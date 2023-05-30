@@ -1,0 +1,9 @@
+.chat {
+  border-top: 1px solid rgba(0, 65, 102, .2);
+  overflow-y: scroll;
+
+  &-inner {
+    padding: 32px 75px;
+    position: relative;
+  }
+}

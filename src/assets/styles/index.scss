@@ -1,0 +1,47 @@
+body {
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+body,
+.app-main,
+.chat,
+.chat-list,
+.ant-table-body,
+.table-custom {
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 66, 105, 0.24);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 66, 105, 0.06);
+  }
+
+  &::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb {
+    height: 8px;
+    background: rgba(0, 66, 105, 0.24);
+    border-radius: 4px;
+  }
+}
+
+.app {
+  height: 100vh;
+
+  &.spin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-main {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 82px);
+  }
+}

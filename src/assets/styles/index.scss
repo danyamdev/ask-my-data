@@ -31,10 +31,16 @@ body,
 .app {
   height: 100vh;
 
+  &.spin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &-main {
     display: flex;
     flex-direction: column;
     height: calc(100vh - 82px);
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }

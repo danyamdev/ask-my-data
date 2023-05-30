@@ -2,14 +2,16 @@ import React from 'react';
 
 import logo from '../../assets/images/logo.svg';
 
-const Logo: React.FC = () => {
-  return (
-    <div className="logo">
-      <img src={logo} alt="Logo" />
-
-      <span>Loans.xlsx</span>
-    </div>
-  );
+type TProps = {
+  name: string;
 };
+
+const Logo: React.FC<TProps> = ({ name }) => (
+  <div className="logo">
+    <img src={logo} alt="Logo" />
+
+    <span>{name}</span>
+  </div>
+);
 
 export default Logo;

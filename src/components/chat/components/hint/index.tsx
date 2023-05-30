@@ -1,27 +1,39 @@
 import React from 'react';
 import { Divider } from 'antd';
 
+import { THint } from '../../../../api/types/ask';
+
 import { ReactComponent as Star } from '../../../../assets/images/star.svg';
 import { ReactComponent as Darts } from '../../../../assets/images/darts.svg';
 
 import './styles.scss';
 
-const Hint: React.FC = () => (
-  <div className="hint">
-    <div className="hint-inner">
-      <div className="hint-left">
-        <Star />
-        <span>Which industry leads to the highest number of defaults?</span>
-      </div>
+type TProps = {
+  hints: THint[];
+};
 
-      <Divider type="vertical" />
+const Hint: React.FC<TProps> = ({ hints }) => (
+  <>
+    {hints.map(({ query, goal }, index) => (
+      <div key={index}>
+        <div className="hint">
+          <div className="hint-inner">
+            <div className="hint-left">
+              <Star />
+              <span>{query}</span>
+            </div>
 
-      <div className="hint-right">
-        <Darts />
-        <span>Identify the industries whith the greatest risk.</span>
+            <Divider type="vertical" />
+
+            <div className="hint-right">
+              <Darts />
+              <span>{goal}</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+    ))}
+  </>
 );
 
 export default Hint;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Spin } from 'antd';
 
 import { Chat, Header, Table } from './components';
 
@@ -8,7 +9,15 @@ import 'antd/dist/reset.css';
 import './assets/styles/index.scss';
 
 const App: React.FC = () => {
-  useApp();
+  const { loadingChat, loadingTable } = useApp();
+
+  if (loadingTable || loadingChat) {
+    return (
+      <div className="app spin">
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
     <div className="app">

@@ -1,13 +1,19 @@
 export type TFile = {
-  columns: string;
+  chat: string[];
+  columns: number;
   datetime: string;
   description: string;
   file_extension: string;
   filename: string;
-  headers: string;
-  invalid: string;
-  missing: string;
-  outliers: string;
-  rows: string;
-  target: string;
+  headers: string[];
+  invalid: number;
+  missing: number;
+  outliers: number;
+  rows: number;
+  target: number;
+};
+
+export type TTablePage = {
+  data: any[];
+  pages: number;
 };

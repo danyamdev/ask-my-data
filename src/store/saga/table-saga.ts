@@ -1,10 +1,22 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { TableActionTypes, TFetchTableAction } from '../../types/table';
+import dataAPI from '../../api/data';
+import { TFile, TTablePage } from '../../api/types/data';
+import { TableActionTypes } from '../../types/table';
+import { errorTableAction, loadingTableAction, successTableAction } from '../table/actions';
 
-function* fetchTableWorker(action: TFetchTableAction) {
-  // try {
-  // } catch (e: any) {}
+function* fetchTableWorker() {
+  try {
+    yield put(loadingTableAction(true));
+
+    const info: TFile = yield call(dataAPI.getTableAnalysis);
+    const data: TTablePage = yield call(dataAPI.getTablePage, { page: 1, rowsPerPage: 3 });
+
+    yield put(successTableAction({ ...info, ...data }));
+  } catch (e: any) {
+    window.console.log(e);
+    yield put(errorTableAction({ title: 'Ошибка', description: 'Обратитесь к администратору!' }));
+  }
 }
 
 export function* fetchTableWatcher() {

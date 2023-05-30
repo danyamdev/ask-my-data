@@ -24,6 +24,7 @@ export const reducer = (state: TChatState = initialState, action: TChatAction) =
           answers: [...state.chat.answers, action.payload.answer],
           hints: action.payload.hints,
         },
+        loading: false,
       };
 
     case ChatActionTypes.SET_CHAT_ERROR:

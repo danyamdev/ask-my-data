@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Divider, Select } from 'antd';
 import type { UploadProps } from 'antd';
 import { Button, message, Upload } from 'antd';
@@ -7,6 +7,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { Logo } from '../index';
 
 import { API } from '../../constants';
+import { useTableSelector } from '../../store/table/selectors';
 
 import invalidImg from '../../assets/images/invalid.svg';
 import outliersImg from '../../assets/images/outliers.svg';
@@ -14,6 +15,19 @@ import missingImg from '../../assets/images/missing.svg';
 import './styles.scss';
 
 const Header: React.FC = () => {
+  const { table } = useTableSelector();
+
+  const options = useMemo(
+    () =>
+      table.headers?.map((h, i) => ({
+        value: i,
+        label: h,
+      })),
+    [table],
+  );
+
+  const logoName = useMemo(() => `${table.filename}${table.file_extension}`, [table]);
+
   const props: UploadProps = {
     name: 'file',
     action: `${API}/uploadNewTable`,
@@ -34,7 +48,7 @@ const Header: React.FC = () => {
     <div className="header">
       <div className="header-inner">
         <div className="header-left">
-          <Logo />
+          <Logo name={logoName} />
 
           <Upload {...props}>
             <Button icon={<UploadOutlined />} />
@@ -42,7 +56,7 @@ const Header: React.FC = () => {
 
           <div className="target-column">
             <span>Target column:</span>
-            <Select defaultValue="revenue" options={[{ value: 'revenue', label: 'Revenue' }]} />
+            <Select defaultValue={table.target} options={options} />
           </div>
         </div>
 
@@ -50,7 +64,7 @@ const Header: React.FC = () => {
           <div className="item">
             <img src={invalidImg} alt="Invalid-Img" />
             <div className="item-description">
-              <span>1,4%</span>
+              <span>{table.invalid}%</span>
               <span>invalid</span>
             </div>
           </div>
@@ -60,7 +74,7 @@ const Header: React.FC = () => {
           <div className="item">
             <img src={outliersImg} alt="Outliers-Img" />
             <div className="item-description">
-              <span>0,2%</span>
+              <span>{table.outliers}%</span>
               <span>outliers</span>
             </div>
           </div>
@@ -70,7 +84,7 @@ const Header: React.FC = () => {
           <div className="item">
             <img src={missingImg} alt="Missing-Img" />
             <div className="item-description">
-              <span>0,1%</span>
+              <span>{table.missing}%</span>
               <span>missing</span>
             </div>
           </div>

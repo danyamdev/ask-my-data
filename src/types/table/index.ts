@@ -1,10 +1,10 @@
-import { TFile } from '../../api/types/data';
+import { TFile, TTablePage } from '../../api/types/data';
 import { TCustomError } from '../common';
 
+type TTable = TFile & TTablePage;
+
 export type TTableState = {
-  table: {
-    info: TFile;
-  };
+  table: TTable;
   loading: boolean;
   error: TCustomError | null;
 };
@@ -27,7 +27,7 @@ type TSetTableLoadingAction = {
 
 type TSetTableSuccessAction = {
   type: TableActionTypes.SET_TABLE_SUCCESS;
-  payload: any;
+  payload: TTable;
 };
 
 type TSetTableErrorAction = {

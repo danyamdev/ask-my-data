@@ -13,7 +13,7 @@ const Chat: React.FC = () => {
     <div className="chat">
       <div className="chat-inner">
         <ChatList answers={answers} />
-        <Hint hints={hints} />
+        <Hint hints={hints} onClick={onClick} />
         <Input onClick={onClick} />
       </div>
     </div>

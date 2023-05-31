@@ -10,24 +10,25 @@ import './styles.scss';
 
 type TProps = {
   hints: THint[];
+  onClick: (query: string) => Promise<void>;
 };
 
-const Hint: React.FC<TProps> = ({ hints }) => (
+const Hint: React.FC<TProps> = ({ hints, onClick }) => (
   <div className="hints">
     {hints.map(({ goal, hint }, index) => (
       <div key={index}>
         <div className="hint">
           <div className="hint-inner">
-            <div className="hint-left">
+            <div className="hint-left" onClick={() => onClick(hint)}>
               <Star />
-              <span>{goal}</span>
+              <span>{hint}</span>
             </div>
 
             <Divider type="vertical" />
 
             <div className="hint-right">
               <Darts />
-              <span>{hint}</span>
+              <span>{goal}</span>
             </div>
           </div>
         </div>

@@ -39,8 +39,12 @@
     }
   }
 
-  &-left span {
-    color: #B853B0;
+  &-left {
+    cursor: pointer;
+
+    span {
+      color: #B853B0;
+    }
   }
 
   &-right span {

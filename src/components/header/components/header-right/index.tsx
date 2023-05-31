@@ -19,7 +19,7 @@ const HeaderRight: React.FC<TProps> = ({ table }) => (
             <span>{name}</span>
           </div>
         </div>
-        {index != 2 && <Divider type="vertical" />}
+        {index != 2 && <Divider key={index} type="vertical" />}
       </>
     ))}
   </div>
